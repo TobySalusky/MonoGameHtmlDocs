@@ -1,15 +1,87 @@
 import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 
-export const Menu: React.FC = () => {
+const content: {[key: string]: string[]} = {
+    'MonoGameHtml': [
+        'What is it?'
+    ],
+    'Getting Started': [
+        'Setup'
+    ],
+    'Docs': [
+        'The Basics',
+        'monoHTML Syntax',
+        'Components',
+        'Writing Components',
+        'Using Components',
+        'Component Parameters',
+        'Dynamic vs. Static Nodes',
+        'Using Outside Data/Functionality',
+        'State',
+    ],
+    'Styling Docs': [
+        'The Basics',
+        'Fonts',
+        'Currently-Implemented Style Attributes',
+    ]
+};
 
-    const [active, setActive] = useState(0);
+const makeLinkSafe = (str: string) => {
+    return str.replaceAll(' ', '_').toLowerCase();
+}
 
-    const onScroll = () => {
-        // TODO:
+const sectionLinkMap = (()=>{
+    const dict: {[key: string]: string} = {};
+    for (const key of Object.keys(content)) {
+        dict[makeLinkSafe(key)] = key;
     }
+    return dict;
+})();
+
+export const restringSection = (linkSafe: string) => {
+    return sectionLinkMap[linkSafe];
+}
+
+
+
+export const Menu: React.FC<{section: string}> = ({section}) => {
+
+    const headerList = content[section];
+
+    const [active, setActive] = useState('Fonts');
 
     const recalc = () => {
         // TODO:
+        //console.log('calc!')
+        /*const mdPane = document.getElementById('MarkdownPane');
+        if (!mdPane) return;
+        const elems = mdPane.getElementsByTagName('h2');
+        const newHeaderList: string[] = [];
+        console.log(334)
+        for (let i = 0; i < elems.length; i++) {
+            const elem = elems[i];
+            if (elem.textContent) newHeaderList.push(elem.textContent);
+            console.log(elem.textContent)
+        }
+        setHeaderList(newHeaderList);*/
+    }
+
+    const onScroll = () => { // TODO: optimize! only use client rect in recalc, then use scroll.y!!
+        //const currY = window.scrollY;
+        //console.log(currY)
+        const elems = document.getElementsByTagName('h2');
+        let currTop = headerList[0];
+        for (let i = 0; i < elems.length; i++) {
+            const elem = elems[i];
+            const text = String(elem.textContent);
+
+            if (!headerList.includes(text)) continue;
+
+            if (elem.getClientRects()[0].y <= 200) {
+                currTop = text;
+            }
+        }
+        setActive(currTop);
     }
 
     useEffect(() => {
@@ -20,30 +92,50 @@ export const Menu: React.FC = () => {
             subtree: true,
         });
         window.addEventListener('scroll', onScroll);
+
+        return () => {
+            observer.disconnect();
+            window.removeEventListener('scroll', onScroll);
+        }
     }, []);
 
-
-    const headerList = [
-        'fonts',
-        'state'
-    ];
-
-    console.log(headerList)
-
     return (
-        <div>
-            <ul>
-                {headerList.map(header =>
-                    <li key={header} id={`header-${header}`} onClick={event => {
-                        console.log('hello')
-                        event.preventDefault();
-                        const elem = document.getElementById(`header-${header}`);
-                        console.log(elem,`header-${header}` )
-                        console.log('fejwaiofeajwiof!~')
-                        elem?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }}>{header}</li>
-                )}
-            </ul>
+        <div className='MenuWrapper'>
+            <div className='Menu'>
+                {Object.keys(content).map(thisSection => {
+                    if (thisSection === section) {
+                        return (
+                            <>
+                                <Link to={makeLinkSafe(thisSection)}>
+                                    <h3>{thisSection}</h3>
+                                </Link>
+                                <ul>
+                                    {headerList.map(header =>
+                                        <li key={header} id={`menu-${header}`} onClick={event => {
+                                            event.preventDefault();
+                                            const elems = document.getElementsByTagName('h2');
+                                            for (let i = 0; i < elems.length; i++) {
+                                                const elem = elems[i];
+                                                if (elem.textContent === header) {
+                                                    elem?.scrollIntoView({behavior: 'smooth', block: 'start'});
+                                                    break;
+                                                }
+                                            }
+                                        }} style={{fontWeight: active === header ? 'bold' : 'normal'}}>
+                                            <p>{header}</p>
+                                        </li>
+                                    )}
+                                </ul>
+                            </>
+                        );
+                    }
+                    return (
+                        <Link to={makeLinkSafe(thisSection)}>
+                            <h3 style={{fontWeight: 'normal'}}>{thisSection}</h3>
+                        </Link>
+                    );
+                })}
+            </div>
         </div>
     );
 }

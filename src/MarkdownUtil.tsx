@@ -12,6 +12,9 @@ export const mdComps = {
                     return 'csharp';
                 case 'language-css':
                     return 'CSS';
+                case 'language-html':
+                    return 'html';
+
                 default:
                     return '';
             }
