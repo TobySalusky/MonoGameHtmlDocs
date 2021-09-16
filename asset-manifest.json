@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/MonoGameHtmlDocs/static/css/main.e6bd2cea.chunk.css",
-    "main.js": "/MonoGameHtmlDocs/static/js/main.7bfd44c6.chunk.js",
-    "main.js.map": "/MonoGameHtmlDocs/static/js/main.7bfd44c6.chunk.js.map",
+    "main.js": "/MonoGameHtmlDocs/static/js/main.3c2593da.chunk.js",
+    "main.js.map": "/MonoGameHtmlDocs/static/js/main.3c2593da.chunk.js.map",
     "runtime-main.js": "/MonoGameHtmlDocs/static/js/runtime-main.b08b2e8a.js",
     "runtime-main.js.map": "/MonoGameHtmlDocs/static/js/runtime-main.b08b2e8a.js.map",
-    "static/js/2.d14cbec7.chunk.js": "/MonoGameHtmlDocs/static/js/2.d14cbec7.chunk.js",
-    "static/js/2.d14cbec7.chunk.js.map": "/MonoGameHtmlDocs/static/js/2.d14cbec7.chunk.js.map",
+    "static/js/2.1dda62f4.chunk.js": "/MonoGameHtmlDocs/static/js/2.1dda62f4.chunk.js",
+    "static/js/2.1dda62f4.chunk.js.map": "/MonoGameHtmlDocs/static/js/2.1dda62f4.chunk.js.map",
     "static/js/3.9d5d4590.chunk.js": "/MonoGameHtmlDocs/static/js/3.9d5d4590.chunk.js",
     "static/js/3.9d5d4590.chunk.js.map": "/MonoGameHtmlDocs/static/js/3.9d5d4590.chunk.js.map",
     "index.html": "/MonoGameHtmlDocs/index.html",
     "static/css/main.e6bd2cea.chunk.css.map": "/MonoGameHtmlDocs/static/css/main.e6bd2cea.chunk.css.map",
-    "static/js/2.d14cbec7.chunk.js.LICENSE.txt": "/MonoGameHtmlDocs/static/js/2.d14cbec7.chunk.js.LICENSE.txt"
+    "static/js/2.1dda62f4.chunk.js.LICENSE.txt": "/MonoGameHtmlDocs/static/js/2.1dda62f4.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b08b2e8a.js",
-    "static/js/2.d14cbec7.chunk.js",
+    "static/js/2.1dda62f4.chunk.js",
     "static/css/main.e6bd2cea.chunk.css",
-    "static/js/main.7bfd44c6.chunk.js"
+    "static/js/main.3c2593da.chunk.js"
   ]
 }
