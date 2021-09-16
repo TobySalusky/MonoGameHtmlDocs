@@ -37,7 +37,7 @@ Rendered result:
 The end-result of a call to `HtmlProcessor.GenerateRunner` is an instance of the `HtmlRunner` class. 
 This is what you will use to handle **HTML** in your **C#** code.
 
-> This variable primarily handles **updating and rendering** the **HTML**.
+> This variable primarily handles **updating and rendering** of the **HTML**.
 
 In your `Game`'s Update method, call:
 ```cs
@@ -243,7 +243,7 @@ Another way of sharing variables between your **C#** and **monohtml** code is vi
 A `StatePack` is created by calling the `StatePack.Create()` method.
 
 The `params` for this method should alternate between the `string` **name** the variable is to be referenced by, 
-and the **starting value** for said variable (whose `Type` will determine that of said variable).
+and the **starting value** for said variable (whose `Type` will determine that of the variable).
 
 ```cs
 string str = "Hello World!";

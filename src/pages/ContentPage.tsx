@@ -6,8 +6,11 @@ import {ContactPane} from "../components/ContactPane";
 import React, {useEffect, useState} from "react";
 import remarkGfm from 'remark-gfm'
 import {NavBar} from "../components/NavBar";
+import { useMediaQuery } from 'react-responsive'
 
 export const ContentPage: React.FC<{page: string}> = ({page}) => {
+
+    const displaySidebar = useMediaQuery({ minWidth: 980 });
 
     const [markdown, setMarkdown] = useState<string>('awaiting content...');
 
@@ -18,7 +21,7 @@ export const ContentPage: React.FC<{page: string}> = ({page}) => {
         <div className='App'>
             <NavBar/>
             <span className='MarkdownAndMenuWrapper'>
-                <div className='MarkdownPane' id='MarkdownPane'>
+                <div className='MarkdownPane' style={{width: displaySidebar ? '50vw' : '80vw'}} id='MarkdownPane'>
                     <ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}
                         // @ts-ignore
                                    components={mdComps}
@@ -26,7 +29,7 @@ export const ContentPage: React.FC<{page: string}> = ({page}) => {
                         {markdown}
                     </ReactMarkdown>
                 </div>
-                <Menu page={restringSection(page)}/>
+                {displaySidebar && <Menu page={restringSection(page)}/>}
             </span>
             <ContactPane/>
         </div>
