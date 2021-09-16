@@ -8,9 +8,6 @@ function App() {
     return ( // @ts-ignore
         <HashRouter basename="/">
             <Switch>
-                <Route path="/" exact>
-                    <Redirect to="/monogamehtml"/>
-                </Route>
                 <Route path="/monogamehtml">
                     <ContentPage page='monogamehtml'/>
                 </Route>
@@ -22,6 +19,9 @@ function App() {
                 </Route>
                 <Route path="/styling_docs">
                     <ContentPage page='styling_docs'/>
+                </Route>
+                <Route path="/" exact>
+                    <Redirect to="/monogamehtml"/>
                 </Route>
             </Switch>
         </HashRouter>
