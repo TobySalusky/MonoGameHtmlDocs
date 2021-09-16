@@ -1,33 +1,30 @@
 import './App.css';
 // @ts-ignore
 import rehypeRaw from 'rehype-raw'
-import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+import {HashRouter, Route, Switch, Redirect} from 'react-router-dom';
 import {ContentPage} from "./pages/ContentPage";
-// @ts-ignore
-import History from "./util/History";
-
 
 function App() {
     return ( // @ts-ignore
-        <Router history={History}>
+        <HashRouter basename="/">
             <Switch>
-                <Route path="/MonoGameHtmlDocs" exact>
-                    <Redirect to="/MonoGameHtmlDocs/monogamehtml"/>
+                <Route path="/" exact>
+                    <Redirect to="/monogamehtml"/>
                 </Route>
-                <Route path="/MonoGameHtmlDocs/monogamehtml" exact>
+                <Route path="/monogamehtml">
                     <ContentPage page='monogamehtml'/>
                 </Route>
-                <Route path="/MonoGameHtmlDocs/getting_started" exact>
+                <Route path="/getting_started">
                     <ContentPage page='getting_started'/>
                 </Route>
-                <Route path="/MonoGameHtmlDocs/docs" exact>
+                <Route path="/docs">
                     <ContentPage page='docs'/>
                 </Route>
-                <Route path="/MonoGameHtmlDocs/styling_docs" exact>
+                <Route path="/styling_docs">
                     <ContentPage page='styling_docs'/>
                 </Route>
             </Switch>
-        </Router>
+        </HashRouter>
     );
 }
 //
