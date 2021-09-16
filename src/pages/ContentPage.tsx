@@ -6,23 +6,18 @@ import {ContactPane} from "../components/ContactPane";
 import React, {useEffect, useState} from "react";
 import remarkGfm from 'remark-gfm'
 import {NavBar} from "../components/NavBar";
+import { useParams } from 'react-router-dom';
 
 export const ContentPage: React.FC = () => {
-    const [markdown, setMarkdown] = useState<string>('awaiting content...');
-    const [section, setSection] = useState<string>('');
 
-    // eslint-disable-next-line no-restricted-globals
-    const path = location.pathname;
-    const startWith = '/MonoGameHtmlDocs/';
-    const newSection = path.substr(path.indexOf(startWith) + startWith.length);
-    if (newSection !== section) {
-        setSection(newSection);
-        window.scrollTo(0, 0);
-    }
+    const {page} = useParams<{page: string}>();
+
+    const [markdown, setMarkdown] = useState<string>('awaiting content...');
 
     useEffect(()=> {
-        fetch(`/MonoGameHtmlDocs/markdown/${section}.md`).then(res => res.text()).then(text => setMarkdown(text));
-    }, [section])
+        fetch(`/MonoGameHtmlDocs/markdown/${page}.md`).then(res => res.text()).then(text => setMarkdown(text));
+        window.scrollTo(0, 0);
+    }, [page])
 
     return (
         <div className='App'>
@@ -36,7 +31,7 @@ export const ContentPage: React.FC = () => {
                         {markdown}
                     </ReactMarkdown>
                 </div>
-                <Menu section={restringSection(section)}/>
+                <Menu page={restringSection(page)}/>
             </span>
             <ContactPane/>
         </div>

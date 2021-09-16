@@ -44,11 +44,11 @@ export const restringSection = (linkSafe: string) => {
 
 
 
-export const Menu: React.FC<{section: string}> = ({section}) => {
+export const Menu: React.FC<{page: string}> = ({page}) => {
 
-    const headerList = content[section];
+    const headerList = content[page];
 
-    const [active, setActive] = useState('Fonts');
+    const [active, setActive] = useState(headerList[0] ?? '');
 
     const recalc = () => {
         // TODO:
@@ -85,6 +85,8 @@ export const Menu: React.FC<{section: string}> = ({section}) => {
     }
 
     useEffect(() => {
+        setActive(headerList[0] ?? '');
+
         const observer = new MutationObserver(recalc);
         // @ts-ignore
         observer.observe(document.getElementById('root'), {
@@ -97,18 +99,19 @@ export const Menu: React.FC<{section: string}> = ({section}) => {
             observer.disconnect();
             window.removeEventListener('scroll', onScroll);
         }
-    }, []);
+    }, [page]);
 
     return (
         <div className='MenuWrapper'>
             <div className='Menu'>
                 {Object.keys(content).map(thisSection => {
-                    if (thisSection === section) {
+                    if (thisSection === page) {
                         return (
                             <>
-                                <Link to={makeLinkSafe(thisSection)}>
-                                    <h3>{thisSection}</h3>
-                                </Link>
+                                <h3 style={{cursor: 'pointer'}} onClick={() => {
+                                    // eslint-disable-next-line no-restricted-globals
+                                    scrollTo({left: 0, top: 0, behavior: 'smooth'});
+                                }}>{thisSection}</h3>
                                 <ul>
                                     {headerList.map(header =>
                                         <li key={header} id={`menu-${header}`} onClick={event => {
