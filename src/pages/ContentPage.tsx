@@ -6,18 +6,13 @@ import {ContactPane} from "../components/ContactPane";
 import React, {useEffect, useState} from "react";
 import remarkGfm from 'remark-gfm'
 import {NavBar} from "../components/NavBar";
-import { useParams } from 'react-router-dom';
 
-export const ContentPage: React.FC = () => {
-
-    const {page} = useParams<{page: string}>();
+export const ContentPage: React.FC<{page: string}> = ({page}) => {
 
     const [markdown, setMarkdown] = useState<string>('awaiting content...');
 
-    useEffect(()=> {
-        fetch(`/MonoGameHtmlDocs/markdown/${page}.md`).then(res => res.text()).then(text => setMarkdown(text));
-        window.scrollTo(0, 0);
-    }, [page])
+    fetch(`/MonoGameHtmlDocs/markdown/${page}.md`).then(res => res.text()).then(text => setMarkdown(text));
+    window.scrollTo(0, 0);
 
     return (
         <div className='App'>
