@@ -12,7 +12,7 @@ export const NavBar: React.FC = () => {
             <div className='NavBarContent'>
                 <span className='InlineCenter'>
                     <a href="https://www.monogame.net/">
-                        <img src="/MonoGameHtmlDocs/images/MonoGameLogo.png" alt="monogame" className='NavBarLogo'/>
+                        <img src="/MonoGameHtmlDocs/images/MonoGameHtmlLogo.png" alt="monogame" className='NavBarLogo'/>
                     </a>
                     {displayTitle && <h1>MonoGameHtml</h1>}
                 </span>
