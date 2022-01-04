@@ -36,9 +36,11 @@
   background-color: #393939;
   color: white;
   border-top: 3px solid black;
+  border-top: 3px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 60vh;
 }
 
@@ -134,6 +136,12 @@ td, th {
 .NavBarLogo {
   height: 50px;
 }
+
+
+.ContactPaneLogo {
+  height: 100px;
+}
+
 .NavBar h1, .NavBar h2 {
   color: white;
   margin: 0 0 0 10px;
@@ -141,6 +149,29 @@ td, th {
 
 .NavBar a {
   text-decoration: none;
+}
+
+.ContactPane h1 {
+  color: white;
+}
+
+.ContactPaneSpan {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ContactPaneSpan:hover {
+  background-color: #FFFFFF22;
+}
+
+.ContactPane a {
+  color: white;
+}
+
+.MaxImg {
+  max-width: 100%;
 }
 
 /* ======================================= */

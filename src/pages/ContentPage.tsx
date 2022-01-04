@@ -31,7 +31,7 @@ export const ContentPage: React.FC<{page: string}> = ({page}) => {
                 </div>
                 {displaySidebar && <Menu page={restringSection(page)}/>}
             </span>
-            <ContactPane/>
+            <ContactPane page={restringSection(page)}/>
         </div>
     );
 }

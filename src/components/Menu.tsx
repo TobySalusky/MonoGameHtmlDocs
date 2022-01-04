@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 
-const content: {[key: string]: string[]} = {
+export const content: {[key: string]: string[]} = {
     'MonoGameHtml': [
         'What is it?'
     ],
@@ -10,13 +10,13 @@ const content: {[key: string]: string[]} = {
     ],
     'Docs': [
         'The Basics',
-        'monoHTML Syntax',
         'Components',
         'Writing Components',
+        'monoHTML Syntax',
         'Using Components',
         'Component Parameters',
-        'Dynamic vs. Static Nodes',
         'Using Outside Data/Functionality',
+        'Dynamic vs. Static Nodes',
         'State',
     ],
     'Styling Docs': [
@@ -26,7 +26,7 @@ const content: {[key: string]: string[]} = {
     ]
 };
 
-const makeLinkSafe = (str: string) => {
+export const makeLinkSafe = (str: string) => {
     return str.replaceAll(' ', '_').toLowerCase();
 }
 
