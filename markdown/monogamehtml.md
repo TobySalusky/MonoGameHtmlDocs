@@ -38,6 +38,6 @@ const App = () => {
 
 ## Instant Preview Editor
 
-<img src="/MonoGameHtmlDocs/images/examples/Editor.png" class="MaxImg"/>
+<img src="/MonoGameHtmlDocs/images/examples/Editor.PNG" class="MaxImg"/>
 
 
