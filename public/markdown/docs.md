@@ -216,7 +216,7 @@ Example:
 yields
 
 
-<img src="/MonoGameHtmlDocs/images/examples/Parameters.png" class="MaxImg"/>
+<img src="/MonoGameHtmlDocs/images/examples/Parameters.PNG" class="MaxImg"/>
 
 > *While not part of the visible declaration*, there are actually ***4*** *optional (null-defaulted) parameters* 
 > **present on every component**
