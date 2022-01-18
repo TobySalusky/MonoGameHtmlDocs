@@ -27,7 +27,7 @@ HtmlRunner htmlInstance = await HtmlProcessor.GenerateRunner(html);
 ```
 Rendered result:
 
-<img src="/MonoGameHtmlDocs/images/examples/FirstUsage.png"/>
+<img src="/MonoGameHtmlDocs/images/examples/FirstUsage.png" class="MaxImg"/>
 
 
 > **Note:** because the `GenerateRunner` method is **asynchronous**, it will either need to be handled as a `Task` or be `awaited` in an `async` context.
@@ -47,12 +47,6 @@ In your `Game`'s Render method, call:
 ```cs
 htmlInstance?.Render(_spriteBatch);
 ```
-
----
-
-## monoHTML Syntax
-
-// TODO:
 
 ---
 
@@ -99,6 +93,53 @@ organization **only**. Components can still reference each other, *even if writt
 
 ---
 
+
+## monoHTML Syntax
+
+Within `Components`, the following syntax can be used:
+
+> "jsx" (curly braces) can be used to create dynamic text and children
+
+```html
+HtmlNode emptyNode = (<div/>);
+
+HtmlNode basicText = (<p>basic text</p>);
+
+
+int num = 7;
+HtmlNode dynamicText = (<p>number: {num}</p>);
+
+HtmlNode basicParent = (
+    <span>
+        <h3>Title</h3>
+        <div>
+            <p>text</p>
+            <p>more text</p>
+        </div>
+    </span>
+);
+
+HtmlNode[] subNodes = new[] {
+    <h1>H1</h1>, <h2>H2</h2>, <h3>H3</h3>
+};
+
+HtmlNode dynamicParent = (
+<span>
+    <p>children:</p>
+    {subNodes}
+</span>
+);
+
+// there exist various properties on any HtmlNode, for example, onTick (an Action executed every Update)
+HtmlNode printingDiv = (
+    <div onTick={() => Console.WriteLine('Hello World!')}/>
+);
+```
+
+> **Note:** within monohtml, single quotes and double quotes are interchangeable.
+
+---
+
 ## Using Components
 
 To use components in your UI, you will **need to add them** when creating your `HtmlRunner` instance.
@@ -131,7 +172,7 @@ HtmlRunner htmlInstance = await HtmlProcessor.GenerateRunner("<App/>",
     components: HtmlComponents.Create(mainComponent, otherComponents));
 ```
 
-<img src="/MonoGameHtmlDocs/images/examples/UsingComponents.png"/>
+<img src="/MonoGameHtmlDocs/images/examples/UsingComponents.png" class="MaxImg"/>
 
 
 When working with `.monohtml` files, it's a little different.
@@ -175,7 +216,7 @@ Example:
 yields
 
 
-<img src="/MonoGameHtmlDocs/images/examples/Parameters.png"/>
+<img src="/MonoGameHtmlDocs/images/examples/Parameters.png" class="MaxImg"/>
 
 > *While not part of the visible declaration*, there are actually ***4*** *optional (null-defaulted) parameters* 
 > **present on every component**
@@ -187,12 +228,6 @@ yields
 > * childrenFunc `Func<HtmlNode[]>`
 > 
 > They can be used in the component-body just like any parameter
-
----
-
-## Dynamic vs. Static Nodes
-
-// TODO:
 
 ---
 
@@ -289,6 +324,28 @@ On the **C#** side, they can be accessed with the `HtmlRunner` instance's `GetVa
 
 ---
 
+## Dynamic vs. Static Nodes
+
+An element is marked is `dynamic` when it contains jsx (curly-braced children).
+```html
+HtmlNode staticNode = (
+    <div>
+        <h4>child 1</h4>
+        <p>child 2</p>
+    </div>
+);
+
+HtmlNode dynamicNode = (
+    <div>
+        {(new [] {1, 2, 3}).map(i =>
+            <p>{i}</p>
+        )}
+    </div>
+);
+```
+
+---
+
 ## State
 
 Because `HtmlNodes` are already equipped with the ability to recalculate text and certain attributes per-frame, 
@@ -325,5 +382,4 @@ const App = () => {
 }
 ```
 
-<img src="/MonoGameHtmlDocs/images/examples/State.gif"/>
-
+<img src="/MonoGameHtmlDocs/images/examples/State.gif" class="MaxImg"/>
